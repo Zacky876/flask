@@ -1,0 +1,79 @@
+{% extends "murid/halaman_siswa.html" %}
+
+{% block title %}
+Tampilkan Semua Jadwal
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .export-buttons {
+        display: flex;
+        justify-content: flex-end; /* Menempatkan tombol di sebelah kanan */
+        margin-bottom: 20px; /* Menambahkan jarak antara tombol dan tabel */
+    }
+
+    .export-buttons button {
+        margin-left: 10px; /* Menambahkan jarak antar tombol */
+    }
+</style>
+
+<body>
+    <div class="container mt-5">
+        
+        <div class="export-buttons">
+            <button id="exportToImage" class="btn btn-primary">Ekspor ke Gambar</button>
+        </div>
+
+        {% if jadwal %}
+            <table id="dataTable" class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID Jadwal</th>
+                        <th>Kelas</th>
+                        <th>Nama Guru</th>
+                        <th>Mata Pelajaran</th>
+                        <th>Hari</th>
+                        <th>Jam Ke</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for row in jadwal %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[3] }}</td>
+                        <td>{{ row[4] }}</td>
+                        <td>{{ row[5] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% elif error %}
+            <div class="alert alert-warning" role="alert">
+                {{ error }}
+            </div>
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                Tidak ada data jadwal.
+            </div>
+        {% endif %}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <script>
+        // Fungsi untuk mengekspor halaman ke gambar
+        document.getElementById('exportToImage').addEventListener('click', function() {
+            html2canvas(document.querySelector('.container')).then(function(canvas) {
+                var image = canvas.toDataURL('image/png');
+                var link = document.createElement('a');
+                link.href = image;
+                link.download = 'jadwal_siswa.png';
+                link.click();
+            });
+        });
+    </script>
+</body>
+{% endblock %}

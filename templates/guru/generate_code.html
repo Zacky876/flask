@@ -1,0 +1,35 @@
+{% extends "guru/halaman_guru.html" %}
+
+{% block title %}
+Generate Code
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='generate_code.css') }}">
+    <div class="container mt-4">
+        <form action="{{ url_for('guru_bp.generate_code') }}" method="POST">
+            <div class="form-group">
+                <label for="nama">Nama guru: <b>{{ session['nama_guru'] }}</b></label>
+            </div>
+            <select id="mapel" name="mapel" required>
+                <option value="" disabled selected>Pilih Mata Pelajaran</option>
+                {% for mapel in mata_pelajaran %}
+                    <option value="{{ mapel[0] }}">{{ mapel[1] }}</option>
+                {% endfor %}    
+            </select>
+            <div class="form-group d-flex align-items-center">
+                <label for="jam1" class="mr-2">Jam Ke:</label>
+                <input type="text" class="form-control mr-2" id="jam1" name="jam1" placeholder="" required>
+                <span class="mx-2 text-center"><b>sampai</b></span>
+                <input type="text" class="form-control" id="jam2" name="jam2" placeholder="" required>
+            </div>
+            <button class="btn btn-success" type="submit">Generate QR Code</button> 
+;            {% if qr_code_path %}
+                <div class="mt-4">
+                    <img src="{{ url_for('static', filename=qr_code_path.split('static/')[-1]) }}" alt="QR Code">
+
+                </div>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

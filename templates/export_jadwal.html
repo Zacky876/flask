@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}
+Export Jadwal
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    .tg {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+      margin-top: 20px;
+    }
+    .tg td {
+      border-color: black;
+      border-style: solid;
+      border-width: 1px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      overflow: hidden;
+      padding: 10px 5px;
+      word-break: normal;
+    }
+    .tg th {
+      border-color: black;
+      border-style: solid;
+      border-width: 1px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: normal;
+      overflow: hidden;
+      padding: 10px 5px;
+      word-break: normal;
+    }
+    .kelas-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #333;
+      margin-top: 70px;
+    }
+    .kelas-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    .kelas-list li {
+      margin-bottom: 5px;
+    }
+    .kelas-list a {
+      text-decoration: none;
+      color: #0066cc;
+      font-size: 18px;
+    }
+    .kelas-list a:hover {
+      text-decoration: underline;
+    }
+    .content {
+        margin-left: 250px; /* Menyesuaikan dengan lebar sidebar */
+        padding: 20px; /* Menambahkan padding untuk jarak */
+    }
+</style>
+
+{% if error %}
+    <p>{{ error }}</p>
+{% else %}
+
+  
+
+    {% if nama_kelas %}
+        <h2 class="kelas-title">Kelas: {{ nama_kelas }}</h2>
+    {% endif %}
+
+    <table class="tg">
+      <thead>
+        <tr>
+          <th class="tg-0lax" rowspan="2">Hari</th>
+          <th class="tg-0lax" colspan="2">Jadwal</th>
+          <th class="tg-0lax" rowspan="2">Mata Pelajaran</th>
+          <th class="tg-0lax" rowspan="2">Nama Guru</th>
+        </tr>
+        <tr>
+          <th class="tg-0lax">Jam Ke</th>
+          <th class="tg-0lax">Waktu</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if hasil_jadwal %}
+            {% for hari, jam_mapel, waktu, nama_pelajaran, nama_guru in hasil_jadwal %}
+                <tr>
+                  <td class="tg-0lax">{{ hari }}</td>
+                  <td class="tg-0lax">{{ jam_mapel }}</td>
+                  <td class="tg-0lax">{{ waktu }}</td>
+                  <td class="tg-0lax">{{ nama_pelajaran }}</td>
+                  <td class="tg-0lax">{{ nama_guru }}</td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+              <td colspan="5">Tidak ada jadwal tersedia.</td>
+            </tr>
+        {% endif %}
+      </tbody>
+    </table>
+{% endif %}
+
+{% endblock %}

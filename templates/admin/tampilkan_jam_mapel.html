@@ -1,0 +1,68 @@
+{% extends "halaman_admin.html" %}
+
+{% block title %}
+Tampilkan Jam Mapel
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+
+        <form method="POST" action="/jumlah_jam_mapel" class="mt-4">
+            <div class="form-group">
+                <label for="bulan">Masukkan Bulan Lahir:</label>
+                <input type="text" class="form-control" id="bulan" name="bulan" placeholder="Masukkan angka bulan (contoh: 08 untuk Agustus)" required>
+            </div>
+            <div class="form-group">
+                <label for="jenis_kelamin">Jenis Kelamin:</label>
+                <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
+                    <option value="">Pilih Jenis Kelamin</option>
+                    <option value="L">Laki-laki</option>
+                    <option value="P">Perempuan</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="pelajaran">Nama Mata Pelajaran:</label>
+                <input type="text" class="form-control" id="pelajaran" name="pelajaran" placeholder="Masukkan Nama Mata Pelajaran" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Tampilkan</button>
+        </form>
+
+        {% if siswa %}
+            <h3 class="mt-5">Jadwal Siswa</h3>
+            <table id="dataTable" class="display table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>NIS</th>
+                        <th>Nama Siswa</th>
+                        <th>Kelas</th>
+                        <th>Hari</th>
+                        <th>Jam Ke</th>
+                        <th>Nama Guru</th>
+                        <th>Mata Pelajaran</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in siswa %}
+                        <tr>
+                            <td>{{ row[0] }}</td>
+                            <td>{{ row[1] }}</td>
+                            <td>{{ row[2] }}</td>
+                            <td>{{ row[3] }}</td>
+                            <td>{{ row[4] }}</td>
+                            <td>{{ row[5] }}</td>
+                            <td>{{ row[6] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% elif error %}
+            <div class="alert alert-warning" role="alert">
+                {{ error }}
+            </div>
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                Tidak ada data siswa.
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

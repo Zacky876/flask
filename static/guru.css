@@ -1,0 +1,58 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    padding-top: 50px; /* Allows space for header */
+    overflow-y: auto;
+    background-color: #343a40;
+}
+
+/* Main content should not be hidden under the sidebar */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+/* Style for sidebar links */
+.sidebar ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: background 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #495057;
+    text-decoration: none;
+}
+
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 50px;
+    background-color: #343a40;
+    color: white;
+    padding: 10px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logout-link {
+    margin-right: 20px;
+}

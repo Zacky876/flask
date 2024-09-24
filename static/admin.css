@@ -1,0 +1,91 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    display: flex;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.header {
+    /* background-color: #575757; */
+    color: white;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    z-index: 500;
+    padding: 10px;
+}
+
+.header p {
+    margin: 0;
+    padding-right: 10px; /* Menambahkan jarak antara <p> dan tombol logout */
+    display: inline-block;
+    text-align: center; /* Menyelaraskan teks di dalam <p> */
+    vertical-align: middle; /* Menyelaraskan secara vertikal di tengah */
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #343a40;
+    min-height: 100vh;
+    padding: 15px;
+    color: white;
+    left: 0;
+    height: 100%;
+    position: fixed;
+    top: 60px; /*menyusaikan posisi sidebar*/
+    overflow-y: auto;
+    padding-top: 20px;
+    padding-bottom: 60px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #495057;
+}
+
+.content {
+    margin-left: 260px; /* Tambahkan jarak untuk konten agar tidak terlalu rapat dengan sidebar */
+    padding: 30px 20px;  /* Menambah padding untuk kenyamanan tampilan */
+    background-color: #ffffff; /* Background putih untuk kontras lebih baik */
+    border-radius: 8px; /* Membuat tepi konten sedikit membulat */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Memberikan bayangan agar konten terlihat lebih menonjol */
+    margin-left: 220px; /* Sesuaikan dengan lebar sidebar */
+    padding-top: 80px; /* Sesuaikan dengan tinggi header */
+}
+
+.table th, .table td {
+    vertical-align: middle !important;
+}
+
+.logout-link {
+    position: absolute;
+    right: 20px; /* Atur jarak dari kanan */
+    top: 50%; /* Atur posisi vertikal di tengah */
+    transform: translateY(-50%);
+    color: white; 
+}

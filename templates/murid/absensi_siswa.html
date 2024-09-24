@@ -1,0 +1,52 @@
+{% extends "murid/halaman_siswa.html" %}
+
+{% block title %}
+Absensi Siswa
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='absensi.css') }}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- <h1>Absensi Siswa</h1> -->
+    <form action="{{ url_for('murid_bp.absensi_siswa') }}" method="POST">
+        <label for="mapel">Nama Mata Pelajaran:</label>
+        <select id="mapel" name="mapel" required>
+            <option value="" disabled selected>Pilih Mata Pelajaran</option> 
+            {% for mapel in mata_pelajaran %}
+                <option value="{{ mapel[0] }}">{{ mapel[1] }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="code">Masukan Code:</label>
+        <input type="text" id="qr_code" name="qr_code" required>
+
+        <p id="current-time">JAM SAAT INI: </p>
+        
+        <button class="btn btn-success" type="submit" name="action" value="checkin" onclick="enableCheckout()">Check-In</button>
+        <button class="btn btn-danger" type="submit" name="action" value="checkout" id="checkoutButton" disabled>Check-Out</button>
+    </form>
+
+    <script>
+        function enableCheckout() {
+            document.getElementById('checkoutButton').disabled = false;
+        }
+
+        function updateTime() {
+            var now = new Date();
+            var hours = now.getHours().toString().padStart(2, '0');
+            var minutes = now.getMinutes().toString().padStart(2, '0');
+            var seconds = now.getSeconds().toString().padStart(2, '0');
+            var currentTime = hours + ':' + minutes + ':' + seconds;
+
+            document.getElementById('current-time').textContent = 'Jam Saat Ini: ' + currentTime;
+        }
+
+        // Perbarui jam setiap detik
+        setInterval(updateTime, 1000);
+        // Panggil fungsi untuk menampilkan jam pertama kali saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTime();
+        });
+    </script>
+{% endblock %}

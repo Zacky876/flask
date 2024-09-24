@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header bg-dark text-white" >
+        <h3>Halaman {{ page_title }}</h3>
+        <div class="logout-link">
+            <p>{{ session['nama_siswa'] }}</p>
+            <a href="{{ url_for('logout') }}" class="btn btn-outline-secondary" >Log out</a>
+        </div>
+    </div>
+    
+    <!-- Sidebar -->
+    <div class="vertical-scroll">
+        <div class="sidebar bg-dark text-white">
+            <h2 class="pl-3">Menu</h2>
+            <ul>
+                <li><a href="{{ url_for('murid_bp.tampilkan_siswa') }}"><i class="fas fa-user-graduate"></i> Tampilkan Semua Siswa</a></li>
+                <li><a href="{{ url_for('murid_bp.tampilkan_jadwal') }}"><i class="fas fa-calendar-alt"></i> Tampilkan Semua Jadwal Siswa</a></li>
+                <li><a href="{{ url_for('murid_bp.absensi_siswa') }}"><i class="fas fa-file-export"></i> Absensi Siswa</a></li>
+            </ul>
+        </div>
+    </div>    
+
+    <!-- Main Content -->
+    <div class="content flex-grow-1 p-3">
+        {% block content %}
+        <div class="container mt-3">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <!-- Konten halaman lainnya -->
+        </div>
+        {% endblock %}
+    </div>
+
+    <!-- Script -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

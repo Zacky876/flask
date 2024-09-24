@@ -1,0 +1,56 @@
+{% extends "halaman_admin.html" %}
+
+{% block title %}
+Tampilkan jadwal Siswa Perhari
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+
+        <form method="POST" action="/tampilkan_perhari">
+            <div class="form-group">
+                <label for="siswa">Nama Siswa:</label>
+                <input type="text" class="form-control" id="siswa" name="siswa" placeholder="Masukkan nama siswa yang diinginkan" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Tampilkan</button>
+        </form>
+
+        {% if jadwal %}
+            <h3 class="mt-5">Jadwal Siswa</h3>
+            <table id="dataTable" class="display table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>NIS</th>
+                        <th>Nama Siswa</th>
+                        <th>Kelas</th>
+                        <th>Hari</th>
+                        <th>Jam Ke</th>
+                        <th>Nama Guru</th>
+                        <th>Mata Pelajaran</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in jadwal %}
+                        <tr>
+                            <td>{{ row[0] }}</td>
+                            <td>{{ row[1] }}</td>
+                            <td>{{ row[2] }}</td>
+                            <td>{{ row[3] }}</td>
+                            <td>{{ row[4] }}</td>
+                            <td>{{ row[5] }}</td>
+                            <td>{{ row[6] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% elif error %}
+            <div class="alert alert-warning" role="alert">
+                {{ error }}
+            </div>
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                Tidak ada data siswa.
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

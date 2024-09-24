@@ -1,0 +1,17 @@
+{% extends "halaman_admin.html" %}
+
+{% block title %}
+Hapus Siswa
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <form method="POST" action="/hapus_siswa">
+        <div class="form-group">
+            <label for="id_siswa">Masukan ID Siswa:</label>
+            <input type="text" class="form-control" id="id_siswa" name="id_siswa" placeholder="Masukkan ID siswa" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Hapus Siswa</button>
+    </form>
+</div>
+{% endblock %}

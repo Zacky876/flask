@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Background color for the whole page */
+}
+
+header {
+    background-color: #333; /* Header background color */
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+    margin-top: 30px; /* Menambahkan jarak antara main dan header */
+}
+    
+h1 {
+    color: #333; /* Heading color */
+}
+
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 70px auto 0 auto; 
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#jam1, #jam2 {
+    width: 60px; 
+}
+
+
+.form-group {
+    margin-bottom: 15px; 
+}
+
+button[type="submit"] {
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+button[type="submit"]:last-of-type {
+    margin-right: 0;
+}
+
+/* Mengatur gambar QR Code */
+img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}

@@ -1,0 +1,56 @@
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Background color for the whole page */
+}
+
+header {
+    background-color: #333; /* Header background color */
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+    margin-top: 30px; 
+}
+    
+h1 {
+    color: #333;
+}
+
+form {
+    background-color: white; /* Form background color */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners for the form */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for the form */
+    max-width: 600px;
+    margin: 70px auto 0 auto; /* Menambahkan jarak antara form dan header, dan center the form */
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+button[type="submit"]:last-of-type {
+    margin-right: 0;
+}

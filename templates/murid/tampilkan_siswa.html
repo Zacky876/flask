@@ -1,0 +1,62 @@
+{% extends 'murid/halaman_siswa.html' %}
+
+
+{% block title %}
+Tampilkan Semua Siswa
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='.css') }}">
+<div class="container mt-5">
+    {% if rows %}
+    <table id="dataTable" class="table table-bordered table-striped">
+        <thead class="thead-dark" style="text-align: center;">
+            <tr>
+                <th>NIS</th>
+                <th>Kelas</th>
+                <th>Nama Siswa</th>
+                <th>JK</th>
+                <th>Tempat Lahir</th>
+                <th>Tanggal Lahir</th>
+                <th>Agama</th>
+                <th>Alamat</th>
+                <th>Orang Tua</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>{{ row[6] }}</td>
+                <td>{{ row[7] }}</td>
+                <td>{{ row[8] }}</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <!-- Tombol Update -->
+                        <a href="{{ url_for('admin_bp.update_siswa', nis=row[0]) }}" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit"></i> Update
+                        </a>
+                        
+                        <!-- Tombol Hapus -->
+                        <a href="{{ url_for('admin_bp.hapus_siswa', nis=row[0]) }}" class="btn btn-danger btn-sm" title="Hapus" onclick="return confirm('Apakah Anda yakin ingin menghapus siswa ini?');">
+                            <i class="fas fa-trash-alt"></i> Hapus
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+        Tidak ada data siswa.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

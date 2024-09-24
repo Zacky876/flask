@@ -1,0 +1,60 @@
+{% extends "halaman_admin.html" %}
+
+{% block title %}
+Tampilkan Siswa Pertahun
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+
+        <form method="POST" action="/tampilkan_data">
+            <div class="form-group">
+                <label for="tahun">Tahun:</label>
+                <input type="text" class="form-control" id="tahun" name="tahun" placeholder="Masukkan tahun yang diinginkan" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Tampilkan</button>
+        </form>
+
+        {% if siswa %}
+            <h3 class="mt-5">Data Pertahun</h3>
+            <table id="dataTable" class="display table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>NIS</th>
+                        <th>Kelas</th>
+                        <th>Nama Siswa</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Tempat Lahir</th>
+                        <th>Tanggal Lahir</th>
+                        <th>Agama</th>
+                        <th>Alamat</th>
+                        <th>Orang Tua</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in siswa %}
+                        <tr>
+                            <td>{{ row[0] }}</td>
+                            <td>{{ row[1] }}</td>
+                            <td>{{ row[2] }}</td>
+                            <td>{{ row[3] }}</td>
+                            <td>{{ row[4] }}</td>
+                            <td>{{ row[5] }}</td>
+                            <td>{{ row[6] }}</td>
+                            <td>{{ row[7] }}</td>
+                            <td>{{ row[8] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% elif error %}
+            <div class="alert alert-warning" role="alert">
+                {{ error }}
+            </div>
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                Tidak ada data siswa.
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
